@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Required:
+#   ffmpeg
+#   fzf
+#   source audio files in your Music dir
+
+clear
+cd ~/Music
+
+source_file=$(ls | grep 'opus' | fzf)
+read -p "Please, enter output file name (ex: my_audio.opus): " output_file
+read -p "start time (ex: 00:01:00): " start_time
+read -p "end time (ex: 00:03:00): " end_time
+
+
+ffmpeg -ss ${start_time} -i ${source_file} -to ${end_time} -c copy -copyts ${output_file} && clear
+echo "File $output_file created"
+ls ~/Music

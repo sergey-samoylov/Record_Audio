@@ -1,0 +1,9 @@
+!#/usr/bin/env bash
+
+cd ~/Music
+
+clear
+
+read -p "Enter desired song name [Artist_NameOfSong]: " song_name
+
+ffmpeg -f pulse -i alsa_output.platform-****.hdmi-stereo.monitor -c:a libopus $song_name.opus
